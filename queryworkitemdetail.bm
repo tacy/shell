@@ -1,0 +1,15 @@
+RULE entey wiquery
+CLASS com.primeton.workflow.api.engtask.WorkItemManagerImpl
+METHOD queryWorkItemDetail
+AT ENTRY
+IF true
+DO resetTimer("MYTEST")
+ENDRULE
+
+RULE exit wiquery
+CLASS com.primeton.workflow.api.engtask.WorkItemManagerImpl
+METHOD queryWorkItemDetail
+AT EXIT
+IF true
+DO System.out.println(String.valueOf(getElapsedTimeFromTimer("MYTEST")))
+ENDRULE

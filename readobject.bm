@@ -1,0 +1,15 @@
+RULE entey readobject
+CLASS java.io.ObjectInputStream 
+METHOD readObject()
+AT ENTRY
+IF callerEquals("com.primeton.access.client.impl.processor.CommonServiceProcessor.process", true, true) 
+DO createTimer($0)
+ENDRULE
+
+RULE exit readobject   
+CLASS java.io.ObjectInputStream 
+METHOD readObject()
+AT EXIT 
+IF callerEquals("com.primeton.access.client.impl.processor.CommonServiceProcessor.process", true, true) 
+DO traceln("readobject exec time: " + String.valueOf(getElapsedTimeFromTimer($0)))
+ENDRULE
