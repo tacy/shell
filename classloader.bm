@@ -1,6 +1,0 @@
-RULE classloader profile 
-CLASS java.lang.ClassLoader 
-METHOD loadClass(java.lang.String, boolean)
-IF callerCheck("com\.primeton.*", true, true,true,0,200) 
-DO traceln("load class: " + $1),traceStack("Thread Stack**********************:")
-ENDRULE
