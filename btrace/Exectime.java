@@ -7,7 +7,7 @@ import static com.sun.btrace.BTraceUtils.*;
 /**
  * 
  */
-@BTrace public class CommandArg {
+@BTrace public class Exectime {
     
     private static Aggregation methodDuration = Aggregations
             .newAggregation(AggregationFunction.AVERAGE);
@@ -24,5 +24,6 @@ import static com.sun.btrace.BTraceUtils.*;
   public static void printAvgMethodDuration() {
       Aggregations.printAggregation(
               "Average method duration (ms)", methodDuration);
+clearAggregation(methodDuration);
   }
 }

@@ -2,20 +2,64 @@ RULE tm tx begin
 INTERFACE ^javax.transaction.TransactionManager
 METHOD begin()
 IF true
-DO System.out.println("tx object:" + $0.getTransaction()),traceStack("begin Thread Stack**********************:")
+DO System.out.println("TransactionManager: tx object:" + $0.getTransaction()),traceStack("begin Thread Stack**********************:")
 ENDRULE
 
-RULE tx commit
+RULE tm tx commit
 INTERFACE ^javax.transaction.TransactionManager
 METHOD commit()
 IF true
-DO System.out.println("tx object:" + $0.getTransaction()),traceStack("commit Thread Stack**********************:")
+DO System.out.println("TransactionManager: tx object:" + $0.getTransaction()),traceStack("commit Thread Stack**********************:")
 ENDRULE
 
-RULE tx rollback
+RULE tm tx rollback
 INTERFACE ^javax.transaction.TransactionManager
 METHOD rollback()
 IF true
-DO System.out.println("tx object:" + $0.getTransaction()),traceStack("rollback Thread Stack**********************:")
+DO System.out.println("TransactionManager: tx object:" + $0.getTransaction()),traceStack("rollback Thread Stack**********************:")
 ENDRULE
 
+
+RULE ut tx begin 
+INTERFACE ^javax.transaction.UserTransaction
+METHOD begin()
+IF true
+DO System.out.println("UserTransaction: tx object:" + $0),traceStack("begin Thread Stack**********************:")
+ENDRULE
+
+RULE ut tx commit
+INTERFACE ^javax.transaction.UserTransaction
+METHOD commit()
+IF true
+DO System.out.println("UserTransaction: tx object:" + $0),traceStack("commit Thread Stack**********************:")
+ENDRULE
+
+RULE ut tx rollback
+INTERFACE ^javax.transaction.UserTransaction
+METHOD rollback()
+IF true
+DO System.out.println("UserTransaction: tx object:" + $0),traceStack("rollback Thread Stack**********************:")
+ENDRULE
+
+
+
+RULE tx begin 
+INTERFACE ^javax.transaction.Transaction
+METHOD begin()
+IF true
+DO System.out.println("Transaction: tx object:" + $0),traceStack("begin Thread Stack**********************:")
+ENDRULE
+
+RULE tx commit
+INTERFACE ^javax.transaction.Transaction
+METHOD commit()
+IF true
+DO System.out.println("Transaction: tx object:" + $0),traceStack("commit Thread Stack**********************:")
+ENDRULE
+
+RULE tx rollback
+INTERFACE ^javax.transaction.Transaction
+METHOD rollback()
+IF true
+DO System.out.println("Transaction: tx object:" + $0),traceStack("rollback Thread Stack**********************:")
+ENDRULE

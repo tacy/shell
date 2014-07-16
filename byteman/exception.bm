@@ -1,0 +1,6 @@
+RULE exception monitor
+CLASS java.lang.Throwable
+METHOD Throwable()
+IF true
+DO traceStack("Thread Stack**********************:")
+ENDRULE
